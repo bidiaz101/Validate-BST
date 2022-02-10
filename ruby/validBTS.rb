@@ -9,6 +9,22 @@ end
 
 def is_valid_bst(root)
     # type your code here
+    if root.left == nil && root.right !=nil
+        return is_valid_bst(root.right)
+    elsif root.left != nil && root.right == nil
+        return is_valid_bst(root.left)
+    elsif root.left == nil && root.right == nil
+        return true
+    elsif root.left.val > root.val || root.right.val < root.val
+        return false
+    end
+
+    boolean_array = [is_valid_bst(root.left), is_valid_bst(root.right)].filter {|boolean| boolean == false}
+    if boolean_array.length == 0 
+        return true
+    else
+        return false
+    end
 end
 
 if __FILE__ == $PROGRAM_NAME
