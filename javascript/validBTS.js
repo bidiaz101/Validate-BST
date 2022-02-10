@@ -8,6 +8,18 @@ class Node {
 
 function isValidBST(root) {
   // type your code here
+  if(root.left === null && root.right === null){
+    return true
+  } else if (root.left === null && root.right !== null){
+    return isValidBST(root.right)
+  } else if(root.left !== null && root.right === null) {
+    return isValidBST(root.left)
+  } else if(root.left.val > root.val || root.right.val < root.val){
+    return false
+  }
+
+  const booleanArr = [isValidBST(root.left), isValidBST(root.right)].filter(boolean => boolean === false)
+  return !booleanArr.length
 }
 
 if (require.main === module) {
